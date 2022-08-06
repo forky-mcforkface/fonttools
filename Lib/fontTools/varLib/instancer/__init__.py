@@ -1270,9 +1270,9 @@ def instantiateVariableFont(
     varLib.set_default_weight_width_slant(
         varfont,
         location={
-            axisTag: limit
+            axisTag: limit[0]
             for axisTag, limit in axisLimits.items()
-            if not isinstance(limit, tuple)
+            if limit[0] == limit[2]
         },
     )
 
