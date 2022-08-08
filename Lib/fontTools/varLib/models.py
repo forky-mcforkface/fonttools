@@ -44,7 +44,7 @@ def subList(truth, lst):
     return [l for l, t in zip(lst, truth) if t]
 
 
-def normalizeValue(v, triple):
+def normalizeValue(v, triple, extrapolate=False):
     """Normalizes value based on a min/default/max triple.
 
       >>> normalizeValue(400, (100, 400, 900))
@@ -60,7 +60,8 @@ def normalizeValue(v, triple):
             f"Invalid axis values, must be minimum, default, maximum: "
             f"{lower:3.3f}, {default:3.3f}, {upper:3.3f}"
         )
-    v = max(min(v, upper), lower)
+    if not extrapolate:
+        v = max(min(v, upper), lower)
     if v == default:
         v = 0.0
     elif v < default:
